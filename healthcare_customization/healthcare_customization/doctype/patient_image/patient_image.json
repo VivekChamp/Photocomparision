@@ -1,0 +1,76 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-06 21:11:15.417919",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "from_date",
+  "column_break_tuku",
+  "to_date",
+  "column_break_rdtb",
+  "patient",
+  "section_break_xtfs",
+  "image_preview"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "From Date"
+  },
+  {
+   "default": "Today",
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "To Date"
+  },
+  {
+   "fieldname": "patient",
+   "fieldtype": "Link",
+   "label": "Patient",
+   "options": "Patient"
+  },
+  {
+   "fieldname": "column_break_tuku",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_rdtb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_xtfs",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "image_preview",
+   "fieldtype": "HTML",
+   "label": "Image Preview"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-10-07 20:18:35.164670",
+ "modified_by": "Administrator",
+ "module": "Healthcare Customization",
+ "name": "Patient Image",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
