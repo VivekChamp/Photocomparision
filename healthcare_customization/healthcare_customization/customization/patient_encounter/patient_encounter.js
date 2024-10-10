@@ -3,8 +3,10 @@
 
 frappe.ui.form.on("Patient Encounter", {
 	refresh(frm) {
-        if(!frm.doc.custom_from_date)frm.set_value("custom_from_date", frappe.datetime.get_today())
-        if(!frm.doc.custom_to_date)frm.set_value("custom_to_date", frappe.datetime.get_today())
+        if(frm.doc.docstatus == 0){
+            if(!frm.doc.custom_from_date)frm.set_value("custom_from_date", frappe.datetime.get_today())
+            if(!frm.doc.custom_to_date)frm.set_value("custom_to_date", frappe.datetime.get_today())
+        }
         pre_image(frm)
 	},
     custom_from_date(frm){
@@ -16,6 +18,7 @@ frappe.ui.form.on("Patient Encounter", {
 });
 
 function pre_image(frm){
+    console.log(frm.doc.custom_from_date, frm.doc.custom_to_date)
     if(!frm.doc.custom_from_date){
         frm.set_df_property("custom_from_html", "options", "<html><h2>Select From Date...</h2><html>")
     }

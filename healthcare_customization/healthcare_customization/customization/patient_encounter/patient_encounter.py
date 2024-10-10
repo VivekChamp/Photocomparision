@@ -77,28 +77,34 @@ def preview_image(self):
                 <div class="gallery-container">
     '''
     from_html = to_html = html
-    for i in from_get_img:
-        from_html += f'''
-                    <div class="gallery">
-                        <a target="_blank" href="{i.image_file}">
-                            <img src="{i.image_file}" alt="No Image" width="600" height="400">
-                        </a>
-                        <div class="desc">
-                            <p>Date: <span class="date">{i.date}</span></p>
+    if self.get('custom_from_date'):
+        for i in from_get_img:
+            from_html += f'''
+                        <div class="gallery">
+                            <a target="_blank" href="{i.image_file}">
+                                <img src="{i.image_file}" alt="No Image" width="600" height="400">
+                            </a>
+                            <div class="desc">
+                                <p>Date: <span class="date">{i.date}</span></p>
+                            </div>
                         </div>
-                    </div>
-                '''
-    for i in to_get_img:
-        to_html += f'''
-                    <div class="gallery">
-                        <a target="_blank" href="{i.image_file}">
-                            <img src="{i.image_file}" alt="No Image" width="600" height="400">
-                        </a>
-                        <div class="desc">
-                            <p>Date: <span class="date">{i.date}</span></p>
+                    '''
+    elif self.get('docstatus') == 0:
+        from_html += ''' <h3>Select From Date...</h3> '''
+    if self.get('custom_to_date'):
+        for i in to_get_img:
+            to_html += f'''
+                        <div class="gallery">
+                            <a target="_blank" href="{i.image_file}">
+                                <img src="{i.image_file}" alt="No Image" width="600" height="400">
+                            </a>
+                            <div class="desc">
+                                <p>Date: <span class="date">{i.date}</span></p>
+                            </div>
                         </div>
-                    </div>
-                '''
+                    '''
+    elif self.get('docstatus') == 0:
+        to_html += ''' <h3>Select To Date...</h3> '''
     end_html = '''
                 </div>
             </body>
