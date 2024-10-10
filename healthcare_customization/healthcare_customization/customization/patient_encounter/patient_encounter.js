@@ -36,5 +36,4 @@ function pre_image(frm){
             }
         },
     });
-    
 }
