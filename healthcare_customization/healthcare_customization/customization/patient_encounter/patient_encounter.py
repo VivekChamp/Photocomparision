@@ -16,10 +16,18 @@ def preview_image(self):
     }
     get_pe = frappe.get_all("Patient Encounter", filters={"patient": self.get('patient')}, pluck="name")
     filter['parent'] = ["in", get_pe]
-    filter["date"] = self.get('custom_from_date')
-    from_get_img = frappe.get_all("Patient Health Image", filters=filter, fields=["image_file", "date"], order_by="date asc")
-    filter["date"] = self.get('custom_to_date')
-    to_get_img = frappe.get_all("Patient Health Image", filters=filter, fields=["image_file", "date"], order_by="date asc")
+    filter["date"] = ["Between",(self.get('custom_from_date'), self.get('custom_to_date'))]
+    get_date = sorted(set(frappe.get_all("Patient Health Image", filters=filter, pluck="date")))
+    first_date = get_date[0] if len(get_date)>1 else None
+    last_date = get_date[-1] if get_date else None
+    from_get_img = []
+    to_get_img = []
+    if first_date:
+        filter["date"] = first_date
+        from_get_img = frappe.get_all("Patient Health Image", filters=filter, fields=["image_file", "date"], order_by="date asc")
+    if last_date:
+        filter["date"] = last_date
+        to_get_img = frappe.get_all("Patient Health Image", filters=filter, fields=["image_file", "date"], order_by="date asc")
     html = '''
         <html>
             <style>
